@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import data from '../data';
+import cli from '../cli';
 
-data();
+cli();
 
