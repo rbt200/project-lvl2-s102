@@ -1,10 +1,12 @@
 import program from 'commander';
+import { version, description } from './package.json';
+
 
 export default () => {
   program
-    .version('0.1.0')
+    .version(version)
     .arguments('<firstConfig> <secondConfig>')
-    .description('Compares two configuration files and shows a difference.')
+    .description(description)
     .option('-f, --format [type]', 'Output format')
     .parse(process.argv);
 };
