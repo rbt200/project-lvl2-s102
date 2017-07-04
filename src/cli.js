@@ -1,11 +1,11 @@
 import program from 'commander';
-import {version,description} from 'package.json';
+import { version,description } from 'package.json';
 
 export default () => {
   program
     .version(version)
     .arguments('<firstConfig> <secondConfig>')
-    .description(description)
+    .description(version)
     .option('-f, --format [type]', 'Output format')
     .parse(process.argv);
 };
