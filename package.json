@@ -1,0 +1,39 @@
+{
+  "name": "gen1",
+  "version": "0.0.6",
+  "description": "generator",
+  "main": "index.js",
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "eslint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbt200/project-lvl2-s102.git"
+  },
+  "author": "rbt200",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbt200/project-lvl2-s102/issues"
+  },
+  "homepage": "https://github.com/rbt200/project-lvl2-s102#readme",
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "*",
+    "babel-preset-stage-0": "*",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "dependencies": {
+    "commander": "*"
+  }
+}
