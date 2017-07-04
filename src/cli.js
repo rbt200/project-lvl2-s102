@@ -3,7 +3,7 @@ import { bin } from 'package';
 
 export default () => {
   program
-    .version(version)
+    .version(bin)
     .arguments('<firstConfig> <secondConfig>')
     .description(bin)
     .option('-f, --format [type]', 'Output format')
