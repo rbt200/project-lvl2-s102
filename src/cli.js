@@ -1,5 +1,5 @@
 import program from 'commander';
-import { version, description } from 'package.json';
+import { version,description } from 'package.json';
 
 export default () => {
   program
