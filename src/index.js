@@ -1,7 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 
-export default (first, second) => 
+export default (first, second) => {
 const res = {
     host: hexlet.io
   + timeout: 20
