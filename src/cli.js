@@ -5,7 +5,7 @@ export default () => {
   program
     .version(version)
     .arguments('<firstConfig> <secondConfig>')
-    .action((firstConfig, secondConfig) => console.log(gendiff(firstConfig, secondConfig)))
+    .action(console.log('asdfasdfasdf'))
     .description(description)
     .option('-f, --format [type]', 'Output format')
     .parse(process.argv);
