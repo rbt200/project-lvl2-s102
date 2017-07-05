@@ -1,5 +1,6 @@
 import program from 'commander';
 import { version, description } from '../package.json';
+import gendiff from '..';
 
 export default () => {
   program
