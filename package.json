@@ -36,7 +36,7 @@
     "jest": "*" 
   },
   "dependencies": {
-    "commander": "^2.11.0"
+    "commander": "*",
     "lodash": "*"
   }
 }
