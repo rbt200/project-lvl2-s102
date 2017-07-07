@@ -14,4 +14,10 @@ describe('gendiff tests', () => {
     const after = '__tests__/fixtures/yml/after.yml';
     expect(gendiff(before, after)).toBe(result);
   });
+
+  it('Compare two .ini files', () => {
+    const before = '__tests__/fixtures/ini/before.ini';
+    const after = '__tests__/fixtures/ini/after.ini';
+    expect(gendiff(before, after)).toBe(result);
+  });
 });
