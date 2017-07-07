@@ -7,19 +7,12 @@ const getExtention = filePath => path.parse(filePath).ext;
 
 export default (file) => {
   const ext = getExtention(file);
-  const result = [];
   switch (ext) {
     case '.json' :
-      result.push(JSON.parse(fs.readFileSync(file, 'utf-8')));
-      break;
+      return JSON.parse(fs.readFileSync(file, 'utf-8'));
     case '.yml' || 'yaml':
-      result.push(yml.safeLoad(fs.readFileSync(file, 'utf-8')));
-      break;
-    case '.ini' :
-      result.push(ini.parse(fs.readFileSync(file, 'utf-8')));
-      break;
+      return yml.safeLoad(fs.readFileSync(file, 'utf-8'));
     default:
-      break;
+      return ini.parse(fs.readFileSync(file, 'utf-8'));
   }
-  return result.pop();
 };

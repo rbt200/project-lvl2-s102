@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import parser from '../src/utilities/parser';
+import parser from './utilities/parser';
 
 const gendiff = (obj1, obj2) => {
   const firstFile = Object.keys(obj1);
