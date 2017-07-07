@@ -8,10 +8,10 @@ describe('gendiff tests', () => {
   const after = '__tests__/fixtures/json/after.json'; 
   expect(gendiff(before, after)).toBe(result);
   });
-  
+
   it('Compare two .yml files', () => {
   const before = '__tests__/fixtures/yml/before.yml';
   const after = '__tests__/fixtures/yml/after.yml';
   expect(gendiff(before, after)).toBe(result);
-  });
+  });  
 });

@@ -1,45 +1,38 @@
-import fs from 'fs';
 import _ from 'lodash';
-import path from 'path';
-import yml from 'js-yaml';
+import parser from '../src/utilities/parser';
 
-const getExtention = filePath => path.parse(filePath).ext;
+const gendiff = (obj1, obj2) => {
+  const firstFile = Object.keys(obj1);
+  const secondFile = Object.keys(obj2);
+  const unitedKeys = _.union(firstFile, secondFile);
 
-const parseFile = (file) => {
-  const ext = getExtention(file);
-  let result;
-  switch (ext) {
-    case '.json' :
-      result = JSON.parse(fs.readFileSync(file).toString());
-      break;
-    case '.yml' || 'yaml':
-      result = yml.safeLoad(fs.readFileSync(file, 'utf8').toString());
-      break;
-    default:
-      break;
-  }
-  return result;
+  const result = unitedKeys.reduce((acc, key) => {
+    if (firstFile.includes(key) && secondFile.includes(key)) {
+      if (obj1[key] === obj2[key]) {
+        acc += `    ${key}: ${obj2[key]}\n`;
+        return acc;
+      }
+      if (obj1[key] !== obj2[key]) {
+        acc += `  + ${key}: ${obj2[key]}\n`;
+        acc += `  - ${key}: ${obj1[key]}\n`;
+        return acc;
+      }
+    }
+    if (!secondFile.includes(key)) {
+      acc += `  - ${key}: ${obj1[key]}\n`;
+      return acc;
+    }
+    if (!firstFile.includes(key)) {
+      acc += `  + ${key}: ${obj2[key]}\n`;
+      return acc;
+    }
+    return acc;
+  }, '');
+  return `{\n${result}}`;
 };
 
-export default (first, second) => {
-  const f = parseFile(first);
-  const s = parseFile(second);
-  getExtention(first);
-  let res = '';
-  _.forEach(f, (value, key) => {
-    _.forEach(s, (value2, key2) => {
-      if (key === key2 && value === value2) { res += `    ${key}: ${value}\n`; }
-      if (key === key2 && value !== value2) { res += `  + ${key2}: ${value2}\n`; res += `  - ${key}: ${value}\n`; }
-    });
-  });
-
-  _.forEach(f, (value, key) => {
-    if (!_.has(s, key)) { res += `  - ${key}: ${value}\n`; }
-  });
-
-  _.forEach(s, (value, key) => {
-    if (_.isEmpty(_.pick(f, key))) { res += `  + ${key}: ${value}\n`; }
-  });
-
-  return `{\n${res}}`;
+export default (file1, file2) => {
+  const obj1 = parser(file1);
+  const obj2 = parser(file2);
+  return gendiff(obj1, obj2);
 };
