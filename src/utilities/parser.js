@@ -1,18 +1,13 @@
-import path from 'path';
 import yml from 'js-yaml';
-import fs from 'fs';
 import ini from 'ini';
 
-const getExtention = filePath => path.parse(filePath).ext;
-
-export default (file) => {
-  const ext = getExtention(file);
+export default (ext) => {
   switch (ext) {
     case '.json' :
-      return JSON.parse(fs.readFileSync(file, 'utf-8'));
+      return JSON.parse;
     case '.yml' || 'yaml':
-      return yml.safeLoad(fs.readFileSync(file, 'utf-8'));
+      return yml.safeLoad;
     default:
-      return ini.parse(fs.readFileSync(file, 'utf-8'));
+      return ini.parse;
   }
 };
