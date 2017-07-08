@@ -6,21 +6,21 @@ export default (obj1, obj2) => {
   const unitedKeys = _.union(keys1, keys2);
 
   const result = unitedKeys.reduce((acc, key) => {
-    const OBJ1_KEY = obj1[key];
-    const OBJ2_KEY = obj2[key];
+    const KeyName1 = obj1[key];
+    const KeyName2 = obj2[key];
     if (keys1.includes(key) && keys2.includes(key)) {
-      if (OBJ1_KEY === OBJ2_KEY) {
-        return acc.concat(`    ${key}: ${OBJ2_KEY}\n`);
+      if (KeyName1 === KeyName2) {
+        return acc.concat(`    ${key}: ${KeyName2}\n`);
       }
-      if (OBJ1_KEY !== OBJ2_KEY) {
-        return acc.concat(`  + ${key}: ${OBJ2_KEY}\n`).concat(`  - ${key}: ${OBJ1_KEY}\n`);
+      if (KeyName1 !== KeyName2) {
+        return acc.concat(`  + ${key}: ${KeyName2}\n`).concat(`  - ${key}: ${KeyName1}\n`);
       }
     }
     if (!keys2.includes(key)) {
-      return acc.concat(`  - ${key}: ${OBJ1_KEY}\n`);
+      return acc.concat(`  - ${key}: ${KeyName1}\n`);
     }
     if (!keys1.includes(key)) {
-      return acc.concat(`  + ${key}: ${OBJ2_KEY}\n`);
+      return acc.concat(`  + ${key}: ${KeyName2}\n`);
     }
     return acc;
   }, '');
